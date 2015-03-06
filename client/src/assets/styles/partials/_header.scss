@@ -1,0 +1,33 @@
+.site-header {
+  // padding-top: 20px;
+  // padding-bottom: 20px;
+  background: $bgHeader;
+  border-bottom: 1px solid $lightGray;
+
+  .nav-pills > li.active > a {
+    &, &:hover, &:focus {
+      position: relative;
+      color: $blue;
+      background-color: white;
+      padding-bottom: 11px;
+      top: 1px;
+      margin-top: -1px;
+    }
+  }
+
+  .nav {
+    li a {
+      font-weight: bold;
+      font-size: 12px;
+      color: #333;
+      @include border-radius(0);
+
+      &:hover {
+        background: lighten($blueGray, 20%);
+      }
+    }
+    li:first-child {
+      margin-left: -15px;
+    }
+  }
+}

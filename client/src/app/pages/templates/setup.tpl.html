@@ -1,0 +1,106 @@
+<section class="setup setup-stripe">
+  <div class="container">
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="content">
+          <h2 class="section-title">Connecting your Stripe Account</h2>
+          <p class="lead">All subscriptions and payments will be handled through your <a href="http://stripe.com" target="_blank">Stripe</a> account to make sure that your customers payment information remains secure. Even if you do not have a Stripe account, don't worry about it. Setting up a Stripe account is easy (and free). Just click the button to get started.</p>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        <a class="stripe-connect" onclick="window.open('/auth/stripe')">
+          <span>Connect with Stripe</span>
+        </a>
+      </div>
+    </div>
+    <div class="overlay" ng-class="{done: stripe.hasAuth}">
+      <div class="content">
+        <span class="message">Completed... move along</span>
+        <a href="#" onclick="window.open('/auth/stripe')">
+          <span>Change Stripe Account</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="setup setup-plans">
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-6">
+        <a href class="btn btn-primary btn-lg" ui-serf="plans">
+          <span>Add your Subscription Plans</span>
+        </a>
+      </div>
+      <div class="col col-sm-6">
+        <div class="content">
+          <h2 class="section-title">Subscription Plans</h2>
+          <p class="lead">After connecting your Stripe account, the next step is to setup your subscription plans. Currently only one plan can be added, but in the future you will be able to have multiple subscription levels.</p>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" ng-class="{disabled: !stripe.hasAuth}">
+      <div class="content">
+        <span class="message">Connect your Stripe account</span>
+      </div>
+    </div>
+    <div class="overlay" ng-class="{done: stripe.hasPlans}">
+      <div class="content">
+        <span class="message">Completed... move along</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="setup setup-theme">
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-6">
+        <div class="content">
+          <h2 class="section-title">Theme Modifications</h2>
+          <p class="lead">The final step is to make a few modification to your theme in order to hide your prices. This isn't difficult to do, but it will require you to change multiple theme template files and you should have some familiarity with html if you plan on doing this yourself.</p>
+          <p>Please remember that because each theme is different there is no way to be 100% sure that your prices are hidden without examining your theme code. The steps here will cover the majority of themes. Please contact myself or another Shopify expert if you want to be 100% sure your prices are hidden.</p>
+        </div>
+      </div>
+      <div class="col col-sm-6 examples">
+        <div accordion>
+
+          <!-- Step 1 -->
+          <div accordion-group heading="Step 1: Edit Theme Page Templates" is-open="true">
+            <p>Search your theme for <code>product.price</code> or <code>variant.price</code> and wrap every occurence with a <code>{% if customer.tags contains 'paywall-sub' %}</code> conditional.</p>
+            <p>What this does is check to see if tag called <i>paywall-sub</i> is attached to the current logged in user. If present, the price will be shown and if not, nothing will be shown or if you choose a message or link can be shown. So for example if you original code looked like...</p>
+            <div ng-include="'pages/templates/partials/code/conditional-before.tpl.html'"></div>
+            <p>It should end up looking like this...</p>
+            <div ng-include="'pages/templates/partials/code/conditional-after.tpl.html'"></div>
+            <p>Notice that there I am displaying a <i>Register to buy</i> link in place of the price if the user is not logged in or not a member. Whether you choose to do this or not is up to you.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div accordion-group heading="Step 2: Edit Theme Meta Properties">
+            <p>Search your theme for any Facebook Open Graph tag (<code>og:price:amount</code>) or Twitter Card tag (<code>twitter:data1</code>) that references <code>product.price</code> and remove them. If you do not then your price will be shared with Facebook and Twitter. You will find both of these in your page head as <code>meta</code> properties and should look something like this...</p>
+            <div ng-include="'pages/templates/partials/code/meta.tpl.html'"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="overlay" ng-class="{disabled: !stripe.hasAuth}">
+      <div class="content">
+        <span class="message">Connect your Stripe account</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<section class="description">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="title">About</h2>
+        <p class="content">Paywall was built to easily turn your existing or planned Shopify site into an exclusive members only shop, complete with a subscription paywall. Not only does Paywall allow you to easily create a members only site, but it also lets you keep all your items visible to non-members to browse so that your shop gets its full SEO benefits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+-->

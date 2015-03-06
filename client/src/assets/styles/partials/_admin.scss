@@ -1,0 +1,121 @@
+#setup {
+  section {
+    position: relative;
+    padding: 60px 0;
+    border-top: 1px solid $lightGray;
+
+    .section-title {
+      font-weight: 300;
+      // color: #999;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.5;
+    }
+  }
+
+  .col {
+    position: relative;
+    height: 200px;
+
+    .content {
+      position: absolute;
+      top: 50%;
+
+      @include transform(translate(0, -50%));
+    }
+  }
+
+  .overlay {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba($lightestGray, 0.9);
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+
+      @include transform(translate(-50%, -50%));
+    }
+
+    .message {
+      display: block;
+      font-size: 50px;
+      font-weight: bold;
+      color: $lightGray;
+    }
+
+    a {
+      @include opacity(0.5);
+    }
+  }
+
+  .overlay.done,
+  .overlay.disabled {
+    display: block;
+  }
+
+  section.setup-stripe {
+    border-top: none;
+
+    .stripe-connect {
+      $h: 40px;
+      height: $h;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include transform(translate(-50%, -50%));
+
+      span {
+        height: $h;
+        line-height: $h;
+        padding: 0 20px 0 48px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      span:before {
+        left: 15px;
+      }
+    }
+  }
+
+  section.setup-plans {
+    .btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include transform(translate(-50%, -50%));
+    }
+  }
+
+  section.setup-theme {
+    .col {
+      position: relative;
+      height: auto;
+
+      .content {
+        position: static;
+        @include transform(translate(0, 0));
+      }
+
+      code, pre {
+        font-family: monospace;
+      }
+    }
+
+    .col.examples {
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<pre ng-non-bindable class="language-html">
+{% if product.available %}
+  {{ product.price | money }}
+{% else %}
+  {{ product.price | money }} Sold Out
+{% endif %}
+</pre>

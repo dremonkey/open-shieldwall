@@ -1,0 +1,19 @@
+.site-footer {
+  border-top: 1px solid $lightGray;
+
+  .container {
+    height: 60px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .row {
+    @include clearfix();
+  }
+
+  p {
+    text-align: center;
+    line-height: 30px;
+    margin: 0;
+  }
+}
