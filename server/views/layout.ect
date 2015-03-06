@@ -14,11 +14,22 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Particle Express Seed</title>
+    <title>Shopify Embedded App Seed</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" type="text/css" href="styles/stripe-connect.css">
+
+    <!-- Shopify Embedded App Library-->
+    <script src='//cdn.shopify.com/s/assets/external/app.js'></script>
+
+    <!-- Example of Initialize for Shopify Embedded App -->
+    <script>
+      // ShopifyApp.init({
+      //   apiKey: '<%= @apiKey %>',
+      //   shopOrigin: '<%= @shopUrl %>'
+      // });
+    </script>
   </head>
   <body>
 
@@ -34,14 +45,6 @@
     <div class="container">
       <% content %>
     </div>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src='//www.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
 
   </body>
 </html>

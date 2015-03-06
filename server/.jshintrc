@@ -9,6 +9,7 @@
   "immed": true,
   "indent": 2,
   "latedef": true,
+  "laxcomma": true,
   "newcap": true,
   "noarg": true,
   "quotmark": "single",
@@ -19,6 +20,7 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+    "jQuery": false,
+    "StripeCheckout": false
   }
 }

@@ -1,17 +1,35 @@
 'use strict';
 
-var _, express, middleware, livereload, prerender;
-
 // Module dependencies
-_ = require('lodash');
-express = require('express');
-livereload = require('./livereload');
-prerender = require('prerender-node');
+var express = require('express')
+  , passport = require('passport')
+  , prerender = require('prerender-node');
 
-middleware = function (server, config) {
-  var viewEngine;
+var livereload = require('./livereload');
+var enableCORS = require('./enableCORS');
+
+var middleware = function (server, config) {
+
+  // log requests to the console
+  server.use(express.logger('dev'));
+
+  // setup encrypted session cookies
+  if (config.server.secret) {
+    server.use(express.cookieParser());
+    server.use(express.session({secret: config.server.secret}));
+  }
+
+  // extract data from the body of the request
+  server.use(express.bodyParser());
+
+  // lets us simulate DELETE and PUT
+  server.use(express.methodOverride());
+
+  // allow CORS
+  server.use(enableCORS);
   
   // ## Views
+  var viewEngine;
 
   // views directory
   server.set('views', config.dirs.views);
@@ -39,7 +57,6 @@ middleware = function (server, config) {
   }
 
   // ## Static Files
-  
   // return the correct mime type for woff filess
   express.static.mime.define({'application/font-woff': ['woff']});
 
@@ -55,6 +72,13 @@ middleware = function (server, config) {
 
   // ## Prerender
   if (config.prerender.token) server.use(prerender.set('prerenderToken', config.prerender.token));
+
+  // ## Passport
+  server.use(passport.initialize());
+
+  // ## Error Handler
+  // Picks up any left over errors and returns a nicely formatted server 500 error
+  server.use(express.errorHandler());
 };
 
 module.exports = middleware;

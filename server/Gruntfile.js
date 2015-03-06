@@ -44,7 +44,11 @@ module.exports = function (grunt) {
       express: {
         files: [
           'server.js',
-          'middleware/**/*.js'
+          'middleware/**/*.js',
+          'models/*.js',
+          'routes/**/*.js',
+          'utils/**/*.js',
+          'node_modules/shopify/**/*.js'
         ],
         tasks:  ['express:dev']
       },

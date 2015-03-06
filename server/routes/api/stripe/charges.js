@@ -1,5 +1,9 @@
 'use strict';
 
+// DEPRECATED
+// Realized this was not necessary and was sufficient to just use single req handler
+// that could proxy requests to api.stripe.com
+
 var _, utils;
 
 _ = require('lodash');
